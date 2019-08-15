@@ -3,12 +3,15 @@ package com.test_json;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import com.google.gson.Gson;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.JsonHttpResponseHandler;
+import com.test_json.imdb.Json;
 
 import org.json.JSONObject;
 
@@ -26,15 +29,18 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
 
 
-                String Address = "http://www.omdbapi.com/?t=gladiator&apikey=70ad462a";
+                String Address = "http://omdbapi.com/?i=tt3896198&apikey=9d19fd";
                 AsyncHttpClient client = new AsyncHttpClient();
                 client.get(Address, new JsonHttpResponseHandler() {
 
                     @Override
                     public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                         super.onSuccess(statusCode, headers, response);
-                        System.out.println(toString());
 
+                        Gson gson=new Gson();
+                        Json json = gson.fromJson(response.toString(),Json.class);
+                        String title=json.getTitle();
+                        Log.d("mytag", title);
                     }
 
 

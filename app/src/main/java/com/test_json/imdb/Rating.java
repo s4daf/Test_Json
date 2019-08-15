@@ -1,5 +1,5 @@
 
-package com.test_json.omdpi;
+package com.test_json.imdb;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
